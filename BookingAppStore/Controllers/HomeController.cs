@@ -1,4 +1,5 @@
 ﻿using BookingAppStore.Models;
+using System;
 using System.Web.Mvc;
 
 namespace BookingAppStore.Controllers
@@ -13,6 +14,24 @@ namespace BookingAppStore.Controllers
             // Передаём список всех книг в представление
             ViewBag.Books = books;
             return View();
+        }
+
+        [HttpGet] // По умолчанию метод HttpGet - его можно не указывать
+        public ActionResult Buy(int id)
+        {
+            ViewBag.BookId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public string Buy(Purchase purchase)
+        {
+            purchase.Date = DateTime.Now;
+            // Добавляем информацию о покупке в БД
+            db.Purchases.Add(purchase);
+            // Сохраняем в БД все изменения
+            db.SaveChanges();
+            return "Спасибо, " + purchase.Person + ", за покупку!";
         }
 
         public ActionResult About()
