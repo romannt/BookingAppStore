@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BookingAppStore.Models;
 using System.Web.Mvc;
 
 namespace BookingAppStore.Controllers
 {
     public class HomeController : Controller
     {
+        BookContext db = new BookContext();
         public ActionResult Index()
         {
+            // Получаем список всех книг из БД
+            var books = db.Books;
+            // Передаём список всех книг в представление
+            ViewBag.Books = books;
             return View();
         }
 
