@@ -12,8 +12,17 @@ namespace BookingAppStore.Controllers
             // Получаем список всех книг из БД
             var books = db.Books;
             // Передаём список всех книг в представление
-            ViewBag.Books = books;
-            return View();
+            // ViewBag.Books = books;
+            return View(books);
+        }
+
+        public ActionResult BookIndex()
+        {
+            // Получаем список всех книг из БД
+            var books = db.Books;
+            // Передаём список всех книг в представление
+            // ViewBag.Books = books;
+            return View(books);
         }
 
         [HttpGet] // По умолчанию метод HttpGet - его можно не указывать
