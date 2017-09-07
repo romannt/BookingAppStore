@@ -13,5 +13,16 @@
         </ul>
     </nav>
     @RenderBody()
+    @* Второй параметр указывает, что эта секция не обязательная *@
+    @*<footer>@RenderSection("Footer", false)</footer>*@
+    <footer>
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer", false)
+        } else
+        {
+            <span>Содержание элемента footer по умолчанию</span>
+        }
+    </footer>
 </body>
 </html>
