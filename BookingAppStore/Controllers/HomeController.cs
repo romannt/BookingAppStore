@@ -11,11 +11,23 @@ namespace BookingAppStore.Controllers
         {
             // Получаем список всех книг из БД
             var books = db.Books;
+            // Заголовок для частичного преставления _GetList
+            ViewBag.Message = "Это частичное представление 2";
             // Передаём список всех книг в представление
             // ViewBag.Books = books;
             return View(books);
         }
 
+        // Для частичных представлений имена обычно начинают со знака подчёркивания чтобы
+        // подчеркнуть, что они не предназначены для прямого обращения
+        // Через этот метод можно вызвать частичное представление как обычное
+        // При встраивании частичного представления этот метод не вызыватся
+        public ActionResult _GetList()
+        {
+            ViewBag.Message = "Это частичное представление";
+            string[] countries = new string[] { "Ukraine", "USA", "France" };
+            return PartialView(countries);
+        }
         public ActionResult BookIndex()
         {
             // Получаем список всех книг из БД

@@ -27,6 +27,14 @@
     @Html.ActionLink("BookIndex - auto generated view", "BookIndex", "Home")
 </div>
 
+@* Передается название частичного представления *@
+@Html.Partial("_GetList", new string[] { "Russia", "China"})
+@* Еще один способ генерации частичного представления - работает немного быстрее *@
+@*@{ Html.RenderPartial("_GetList"); }*@
+
+@* Такой вызов обращается к методу контролера _GetList *@
+@Html.Action("_GetList")
+
 @section Footer {
     <h5>Все права защищены. Magic Soft Inc. 2017.</h5>
 }
