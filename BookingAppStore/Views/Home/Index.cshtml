@@ -35,6 +35,42 @@
 @* Такой вызов обращается к методу контролера _GetList *@
 @Html.Action("_GetList")
 
+@helper BookList(IEnumerable<Book> books) { 
+    <ul>
+        @foreach (Book b in books)
+        {
+            <li>@b.Name</li>
+        }
+    </ul>
+}
+
+<h3>Список книг (helper):</h3>
+@BookList(Model)
+
+@helper CreateList(string[] all)
+{
+    <ul>
+        @foreach (string s in all)
+        {
+            <li>@s</li>
+        }
+    </ul>
+}
+@{ 
+    string[] cities = new string[] { "London", "Paris", "Berlin" };
+    string[] countries = new string[] { "England", "France", "German" };
+}
+<h3>Города</h3>
+@CreateList(cities)
+<h3>Страны</h3>
+@CreateList(countries)
+
+<h3>Города (helper - метод расширения)</h3>
+@using BookingAppStore.Helpers
+@Html.CreateListExt(cities)
+<h3>Страны (helper - метод расширения)</h3>
+@ListHelper.CreateListExt(Html, countries)
+
 @section Footer {
     <h5>Все права защищены. Magic Soft Inc. 2017.</h5>
 }
