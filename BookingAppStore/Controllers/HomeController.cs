@@ -43,8 +43,9 @@ namespace BookingAppStore.Controllers
         [HttpGet] // По умолчанию метод HttpGet - его можно не указывать
         public ActionResult Buy(int? id)
         {
-            ViewBag.BookId = id;
-            return View();
+            // ViewBag.BookId = id;
+            Purchase purchase = new Purchase { BookId = (id != null ? (int)id : 0), Person = "неизвестно" };
+            return View(purchase);
         }
 
         [HttpPost]
