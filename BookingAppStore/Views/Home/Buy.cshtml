@@ -4,6 +4,7 @@
 
 <div>
     <h3>Форма оформления покупки</h3>
+    @*
     <form method="post">
         <input type="hidden" value="@ViewBag.BookId" name="BookId" />
         <table>
@@ -21,5 +22,24 @@
             </tr>
         </table>       
     </form>
+    *@
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        @Html.Hidden("BookId", ViewBag.BookId as string)
+        <table>
+            <tr>
+                <td><p>@Html.Label("Person", "Введите имя")</p></td>
+                <td>@Html.TextBox("Person", "Введите имя")</td>
+            </tr>
+            <tr>
+                <td><p>@Html.Label("Address", "Введите адрес")</p></td>
+                <td>@Html.TextBox("Address", "Введите адрес")</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Отправить" /></td>
+                <td></td>
+            </tr>
+        </table>
+    }
 </div>
 

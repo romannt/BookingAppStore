@@ -15,6 +15,9 @@ namespace BookingAppStore.Controllers
             ViewBag.Message = "Это частичное представление 2";
             // Передаём список всех книг в представление
             // ViewBag.Books = books;
+            // Список опций для DropDownList
+            SelectList authors = new SelectList(db.Books, "Author", "Name");
+            ViewBag.Authors = authors;
             return View(books);
         }
 
@@ -38,7 +41,7 @@ namespace BookingAppStore.Controllers
         }
 
         [HttpGet] // По умолчанию метод HttpGet - его можно не указывать
-        public ActionResult Buy(int id)
+        public ActionResult Buy(int? id)
         {
             ViewBag.BookId = id;
             return View();
@@ -67,6 +70,17 @@ namespace BookingAppStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        [HttpPost]
+        public string GetForm(string text, string color, bool set, string author, string[] countries)
+        {
+            string result = "";
+            foreach(string country in countries)
+            {
+                result += (result == "" ? "" : ", ") + country;
+            }
+            return $"text: {text} color: {color} set: {set} author: {author} countries: {result}";
+
         }
     }
 }

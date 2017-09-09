@@ -71,6 +71,33 @@
 <h3>Страны (helper - метод расширения)</h3>
 @ListHelper.CreateListExt(Html, countries)
 
+@using (Html.BeginForm("GetForm", "Home", FormMethod.Post))
+{
+    <div>
+        @Html.TextArea("text", "Привет, мир!", 5, 50, null)<br />
+    </div>
+    <div>
+        @Html.RadioButton("color", "red")
+        <span>красный</span><br />
+        @Html.RadioButton("color", "blue")
+        <span>синий</span><br />
+        @Html.RadioButton("color", "green", true)
+        <span>зеленый</span>
+    </div>
+    <div>
+        @Html.CheckBox("set", false) <spat>включить</spat>
+    </div>
+    <div>
+        @Html.Label("authour", "Введите автора")
+        @Html.DropDownList("author", ViewBag.Authors as SelectList)
+    </div>
+    <div>
+        @Html.ListBox("countries", 
+        new MultiSelectList(new string[] { "Бразилия", "Аргентина", "Уругвай", "Чили" }))
+    </div>
+    <input type="submit" value="Send" />
+}
+
 @section Footer {
     <h5>Все права защищены. Magic Soft Inc. 2017.</h5>
 }
