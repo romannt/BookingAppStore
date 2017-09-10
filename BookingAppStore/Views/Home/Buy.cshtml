@@ -51,11 +51,13 @@
         <table>
             <tr>
                 <td><p>@Html.LabelFor(m => m.Person, "Введите имя")</p></td>
-                <td>@Html.TextBoxFor(m => m.Person)</td>
+                @*<td>@Html.TextBoxFor(m => m.Person)</td>*@
+                <td>@Html.EditorFor(m => m.Person)</td>
             </tr>
             <tr>
                 <td><p>@Html.LabelFor(m => m.Address, "Введите адрес")</p></td>
-                <td>@Html.TextBoxFor(m => m.Address)</td>
+                @*<td>@Html.TextBoxFor(m => m.Address)</td>*@
+                <td>@Html.EditorFor(m => m.Address)</td>
             </tr>
             <tr>
                 <td><input type="submit" value="Отправить" /></td>

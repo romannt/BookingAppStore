@@ -81,12 +81,18 @@ namespace BookingAppStore.Controllers
         public string GetForm(string text, string color, bool set, string author, string[] countries)
         {
             string result = "";
-            foreach(string country in countries)
+            foreach (string country in countries)
             {
                 result += (result == "" ? "" : ", ") + country;
             }
             return $"text: {text} color: {color} set: {set} author: {author} countries: {result}";
-
+        }
+        public ActionResult GetBook(int id)
+        {
+            Book b = db.Books.Find(id);
+            if (b == null)
+                return HttpNotFound();
+            return View(b);
         }
     }
 }
