@@ -7,6 +7,11 @@ namespace BookingAppStore.Controllers
     public class HomeController : Controller
     {
         BookContext db = new BookContext();
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
         public ActionResult Index()
         {
             // Получаем список всех книг из БД
